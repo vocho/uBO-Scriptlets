@@ -633,7 +633,7 @@
 							iframe.setAttribute('id', '{{3}}');
 							iframe.setAttribute('src', result[1]);
 							iframe.setAttribute('style', '{{4}}');
-							document.body.insertBefore(iframe, node);
+							document.body.append(iframe);
 							executeOnce = true;
 						} catch { }
 	   	};
