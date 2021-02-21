@@ -628,9 +628,7 @@
 						try {
 							const iframe = document.createElement('iframe');
 							const node = document.querySelector(selector);
-							const target = '{{2}}';
-							target.slice(1, -1);
-							const re = new RegExp(target);
+							const re = new RegExp('{{2}}'.slice(1, -1));
 							const result = re.exec(node.textContent);
 							iframe.setAttribute('id', '{{3}}');
 							iframe.setAttribute('src', result[1]);
