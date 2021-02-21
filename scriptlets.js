@@ -638,6 +638,7 @@
 							iframe.setAttribute('id', id);
 							iframe.setAttribute('src', result[1]);
 							iframe.setAttribute('style', style);
+							iframe.setAttribute('referrerpolicy', 'no-referrer');
 							document.body.append(iframe);
 							executeOnce = true;
 						} catch { }
