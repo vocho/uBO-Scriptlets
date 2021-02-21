@@ -593,7 +593,7 @@
 
 /// insert-iframe-picked.js
 /// alias iip.js
-// example.com##+js(iip, [selector], /(https.+)/, id, style)
+// example.com##+js(iip, [selector], abc, id, style)
 (() => {
 		'use strict';
 		const selector = '{{1}}';
@@ -604,7 +604,8 @@
 						try {
 							const iframe = document.createElement('iframe');
 							const node = document.querySelector(selector);
-							const re = new RegExp('{{2}}'.slice(1, -1));
+							const retext = '{{2}}';
+							const re = new RegExp(retext.slice(1, -1));
 							const result = re.exec(node.textContent);
 							iframe.setAttribute('id', '{{3}}');
 							iframe.setAttribute('src', result[1]);
@@ -616,7 +617,6 @@
 	   	const observer = new MutationObserver(insertframe);
     		observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
-
 
 /// insert-iframe-before-a.js
 /// alias iiba.js
@@ -636,7 +636,7 @@
 							iframe.setAttribute('style', '{{3}}');
 							document.body.insertBefore(iframe, node);
 							executeOnce = true;
-						} catch { } 
+						} catch { }
 	   	};
 	   	const observer = new MutationObserver(insertframe);
     		observer.observe(document.documentElement, { childList: true, subtree: true });
