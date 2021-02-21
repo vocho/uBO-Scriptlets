@@ -615,9 +615,9 @@
     		observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
 
-/// insert-iframe-before-element.js
-/// alias iibe.js
-// example.com##+js(iibe, [selector], [re], [id], [style])
+/// insert-iframe-picked.js
+/// alias iip.js
+// example.com##+js(iip, [selector], /(https.+)/, id, style)
 (() => {
 		'use strict';
 		const selector = '{{1}}';
