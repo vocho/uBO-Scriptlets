@@ -609,10 +609,37 @@
 							iframe.setAttribute('style', '{{3}}');
 							document.body.insertBefore(iframe, node);
 							executeOnce = true;
+						} catch { } 
+	   	};
+	   	const observer = new MutationObserver(insertframe);
+    		observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
+
+/// insert-iframe-before-element.js
+/// alias iibe.js
+// example.com##+js(iibe, [selector], [re], [id], [style])
+(() => {
+		'use strict';
+		const selector = '{{1}}';
+		if ( selector === '' || selector === '{{1}}' ) { return; }
+		let executeOnce = false;
+		const insertframe = () => {
+						if (executeOnce !== false) { return; }
+						try {
+							const iframe = document.createElement('iframe');
+							const node = document.querySelector(selector);
+							const re = new RegExp('{{2}}');
+							const result = re.exec(node.textContent);
+							iframe.setAttribute('id', '{{3}}');
+							iframe.setAttribute('src', result[1]);
+							iframe.setAttribute('style', '{{4}}');
+							document.body.insertBefore(iframe, node);
+							executeOnce = true;
 						} catch { }
 	   	};
 	   	const observer = new MutationObserver(insertframe);
     		observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
+
 
 
