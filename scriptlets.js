@@ -621,7 +621,7 @@
 (() => {
 		'use strict';
 		const selector = '{{1}}';
-		if ( selector === '' || selector === '{{1}}' ) { return; }
+		if ( selector === '' || selector === '{{1}}' ) { alert('selector'); return; }
 		let executeOnce = false;
 		const insertframe = () => {
 						if (executeOnce !== false) { return; }
@@ -645,7 +645,7 @@
 							document.body.append(iframe);
 							executeOnce = true;
 						} catch { }
-	   	};
-	   	const observer = new MutationObserver(insertframe);
-    		observer.observe(document.documentElement, { childList: true, subtree: true });
+		};
+		const observer = new MutationObserver(insertframe);
+		observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
