@@ -593,31 +593,25 @@
 
 /// insert-iframe-before-a.js
 /// alias iiba.js
-// example.com##+js(iiba, [selector], display:block !important, node, div)
+// example.com##+js(iiba, [selector], [id], [style])
 (() => {
 		'use strict';
-		const identifier = '{{1}}';
-		if ( identifier === '' || identifier === '{{1}}' ) { return; }
-		const identifiers = identifier.split(/\s*\|\s*/);
+		const selector = '{{1}}';
+		if ( selector === '' || selector === '{{1}}' ) { return; }
 		let executeOnce = false;
-		const insertelem = () => {
+		const insertframe = () => {
 						if (executeOnce !== false) { return; }
 						try {
-							const element = document.createElement('{{4}}');
-							const node = document.querySelector('{{3}}');
-							for (const identifieradder of identifiers) {
-								if (identifieradder.charAt(0) === '#') {
-									 element.id = identifieradder.substring(1);
-								} else if (identifieradder.charAt(0) === '.') {
-									 element.className = identifieradder.substring(1);
-								} else { return; }	 
-							}
-							element.style.cssText = '{{2}}';
-							document.body.insertBefore(element, node);
+							const iframe = document.createElement('iframe');
+							const node = document.querySelector(selector);
+							iframe.setAttribute('id', '{{2}}');
+							iframe.setAttribute('src', node.getAttribute('href'));
+							iframe.setAttribute('style', '{{3}}');
+							document.body.insertBefore(iframe, node);
 							executeOnce = true;
 						} catch { }
 	   	};
-	   	const observer = new MutationObserver(insertelem);
+	   	const observer = new MutationObserver(insertframe);
     		observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
 
