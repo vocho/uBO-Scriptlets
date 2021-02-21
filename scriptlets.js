@@ -621,30 +621,24 @@
 (() => {
 		'use strict';
 		const selector = '{{1}}';
-		if ( selector === '' || selector === '{{1}}' ) { alert('selector'); return; }
+		if ( selector === '' || selector === '{{1}}' ) { return; }
 		let executeOnce = false;
 		const insertframe = () => {
 						if (executeOnce !== false) { return; }
 						try {
-							alert(selector);
 							const iframe = document.createElement('iframe');
 							const node = document.querySelector(selector);
-							if (node == null) { alert('node == null'); return; }
+							if (node == null) { return; }
 							const retext = '{{2}}';
-							alert(retext);
-							alert(retext.slice(1, -1));
 							const re = new RegExp(retext.slice(1, -1));
 							const result = re.exec(node.textContent);
-							if (result == null) { alert('result == null'); return; }
-							alert(result[1]);
+							if (result == null) { return; }
 							const id = '{{3}}';
-							alert(id);
 							const style = '{{4}}';
-							alert(style);
 							iframe.setAttribute('id', id);
 							iframe.setAttribute('src', result[1]);
 							iframe.setAttribute('style', style);
-							document.body.append(iframe);
+							document.body.insertBefore(iframe, node);
 							executeOnce = true;
 						} catch { }
 		};
