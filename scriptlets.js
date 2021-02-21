@@ -627,18 +627,20 @@
 						if (executeOnce !== false) { return; }
 						try {
 							alert(selector);
+							const iframe = document.createElement('iframe');
+							const node = document.querySelector(selector);
+							if (node == null) { alert('node == null'); return; }
 							const retext = '{{2}}';
 							alert(retext);
+							alert(retext.slice(1, -1));
+							const re = new RegExp(retext.slice(1, -1));
+							const result = re.exec(node.textContent);
+							if (result == null) { alert('result == null'); return; }
+							alert(result[1]);
 							const id = '{{3}}';
 							alert(id);
 							const style = '{{4}}';
 							alert(style);
-							const iframe = document.createElement('iframe');
-							const node = document.querySelector(selector);
-							if (node == null) { alert('node == null'); return; }
-							const re = new RegExp(retext.slice(1, -1));
-							const result = re.exec(node.textContent);
-							if (result == null) { alert('result == null'); return; }
 							iframe.setAttribute('id', id);
 							iframe.setAttribute('src', result[1]);
 							iframe.setAttribute('style', style);
