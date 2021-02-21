@@ -591,30 +591,6 @@
                 });
 })();
 
-/// insert-iframe-before-a.js
-/// alias iiba.js
-// example.com##+js(iiba, [selector], [id], [style])
-(() => {
-		'use strict';
-		const selector = '{{1}}';
-		if ( selector === '' || selector === '{{1}}' ) { return; }
-		let executeOnce = false;
-		const insertframe = () => {
-						if (executeOnce !== false) { return; }
-						try {
-							const iframe = document.createElement('iframe');
-							const node = document.querySelector(selector);
-							iframe.setAttribute('id', '{{2}}');
-							iframe.setAttribute('src', node.getAttribute('href'));
-							iframe.setAttribute('style', '{{3}}');
-							document.body.insertBefore(iframe, node);
-							executeOnce = true;
-						} catch { } 
-	   	};
-	   	const observer = new MutationObserver(insertframe);
-    		observer.observe(document.documentElement, { childList: true, subtree: true });
-})();
-
 /// insert-iframe-picked.js
 /// alias iip.js
 // example.com##+js(iip, [selector], /(https.+)/, id, style)
@@ -642,4 +618,26 @@
 })();
 
 
-
+/// insert-iframe-before-a.js
+/// alias iiba.js
+// example.com##+js(iiba, [selector], [id], [style])
+(() => {
+		'use strict';
+		const selector = '{{1}}';
+		if ( selector === '' || selector === '{{1}}' ) { return; }
+		let executeOnce = false;
+		const insertframe = () => {
+						if (executeOnce !== false) { return; }
+						try {
+							const iframe = document.createElement('iframe');
+							const node = document.querySelector(selector);
+							iframe.setAttribute('id', '{{2}}');
+							iframe.setAttribute('src', node.getAttribute('href'));
+							iframe.setAttribute('style', '{{3}}');
+							document.body.insertBefore(iframe, node);
+							executeOnce = true;
+						} catch { } 
+	   	};
+	   	const observer = new MutationObserver(insertframe);
+    		observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
