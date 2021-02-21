@@ -591,33 +591,6 @@
                 });
 })();
 
-/// insert-iframe-picked.js
-/// alias iip.js
-// example.com##+js(iip, [selector], abc, id, style)
-(() => {
-		'use strict';
-		const selector = '{{1}}';
-		if ( selector === '' || selector === '{{1}}' ) { return; }
-		let executeOnce = false;
-		const insertframe = () => {
-						if (executeOnce !== false) { return; }
-						try {
-							const iframe = document.createElement('iframe');
-							const node = document.querySelector(selector);
-							const retext = '{{2}}';
-							const re = new RegExp(retext.slice(1, -1));
-							const result = re.exec(node.textContent);
-							iframe.setAttribute('id', '{{3}}');
-							iframe.setAttribute('src', result[1]);
-							iframe.setAttribute('style', '{{4}}');
-							document.body.append(iframe);
-							executeOnce = true;
-						} catch { }
-	   	};
-	   	const observer = new MutationObserver(insertframe);
-    		observer.observe(document.documentElement, { childList: true, subtree: true });
-})();
-
 /// insert-iframe-before-a.js
 /// alias iiba.js
 // example.com##+js(iiba, [selector], [id], [style])
@@ -635,6 +608,37 @@
 							iframe.setAttribute('src', node.getAttribute('href'));
 							iframe.setAttribute('style', '{{3}}');
 							document.body.insertBefore(iframe, node);
+							executeOnce = true;
+						} catch { }
+	   	};
+	   	const observer = new MutationObserver(insertframe);
+    		observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
+
+/// insert-iframe-picked.js
+/// alias iip.js
+// example.com##+js(iip, [selector], abc, id, style)
+(() => {
+		'use strict';
+		const selector = '{{1}}';
+		if ( selector === '' || selector === '{{1}}' ) { return; }
+		let executeOnce = false;
+		const insertframe = () => {
+						if (executeOnce !== false) { return; }
+						try {
+							console.log(selector);
+							const iframe = document.createElement('iframe');
+							const node = document.querySelector(selector);
+							if (node == null) { console.log('node == null'); return; }
+							const retext = '{{2}}';
+							console.log(retext);
+							const re = new RegExp(retext.slice(1, -1));
+							const result = re.exec(node.textContent);
+							if (result == null) { console.log('result == null'); return; }
+							iframe.setAttribute('id', '{{3}}');
+							iframe.setAttribute('src', result[1]);
+							iframe.setAttribute('style', '{{4}}');
+							document.body.append(iframe);
 							executeOnce = true;
 						} catch { }
 	   	};
