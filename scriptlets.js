@@ -626,18 +626,22 @@
 		const insertframe = () => {
 						if (executeOnce !== false) { return; }
 						try {
-							console.log(selector);
+							alert(selector);
+							const retext = '{{2}}';
+							alert(retext);
+							const id = '{{3}}';
+							alert(id);
+							const style = '{{4}}';
+							alert(style);
 							const iframe = document.createElement('iframe');
 							const node = document.querySelector(selector);
-							if (node == null) { console.log('node == null'); return; }
-							const retext = '{{2}}';
-							console.log(retext);
+							if (node == null) { alert('node == null'); return; }
 							const re = new RegExp(retext.slice(1, -1));
 							const result = re.exec(node.textContent);
-							if (result == null) { console.log('result == null'); return; }
-							iframe.setAttribute('id', '{{3}}');
+							if (result == null) { alert('result == null'); return; }
+							iframe.setAttribute('id', id);
 							iframe.setAttribute('src', result[1]);
-							iframe.setAttribute('style', '{{4}}');
+							iframe.setAttribute('style', style);
 							document.body.append(iframe);
 							executeOnce = true;
 						} catch { }
